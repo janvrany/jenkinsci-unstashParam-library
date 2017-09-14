@@ -1,0 +1,24 @@
+<b><code>unstashParam(paramname[, filename])</code></b>
+
+<p>
+Save the file passed as build parameter named <code>paramname</code>
+to a current workspace. Returns the path to that file relative to the
+current workspace.
+</p>
+
+<p>
+If <code>filename</code> is specified, the file is saved under that
+name (again, relative to the workspace). Otherwise original filename
+is used.
+</p>
+
+<p>
+Throws an error (by means of <code>error<code> pipeline step) if:
+</p>
+<ul>
+  <li>no build parameter named <code>paramname</code> exists,</li>
+  <li>parameter is not a file parameter</code>,</li> or
+  <li><code>unstathParam</code> is not called within a workspace on a node</li>.
+ </ul>
+
+
