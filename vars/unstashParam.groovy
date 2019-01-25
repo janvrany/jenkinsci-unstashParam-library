@@ -8,7 +8,7 @@ def call(String name, String fname = null) {
     if (paramsAction != null) {
         for (param in paramsAction.getParameters()) {
             if (param.getName().equals(name)) {
-                if (! param instanceof FileParameterValue) {
+                if (! (param instanceof FileParameterValue)) {
                     error "unstashParam: not a file parameter: ${name}"
                 }
                 if (env['NODE_NAME'] == null) {
