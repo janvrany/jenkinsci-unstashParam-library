@@ -1,4 +1,4 @@
-# JENKINS-27413 workaround library
+# Jenkins `unstashParam` Library
 
 This [pipeline library][2] contains a workaround for Jenkins issue [ JENKINS-27413][1]. It provides a new step `unstashParam` that saves file parameter to a workspace.
 
@@ -10,7 +10,7 @@ See [Jenkins User Handbook, chapter Extending with Shared Libraries][2] on how t
 
 In a pipeline script:
 
-    library "JENKINS-27413-workaround-library"
+    library "jenkinsci-unstashParam-library"
     node {
        def file_in_workspace = unstashParam "file"
        sh "cat ${file_in_workspace}"
