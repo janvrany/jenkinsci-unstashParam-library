@@ -11,6 +11,9 @@ def call(String name, String fname = null) {
                 if (! (param instanceof FileParameterValue)) {
                     error "unstashParam: not a file parameter: ${name}"
                 }
+                if (!param.getOriginalFileName()) {
+                    error "unstashParam: file was not uploaded"
+                }
                 if (env['NODE_NAME'] == null) {
                     error "unstashParam: no node in current context"
                 }
@@ -18,11 +21,12 @@ def call(String name, String fname = null) {
                     error "unstashParam: no workspace in current context"
                 }
 
-       if (env['NODE_NAME'].equals("master")) {
-           workspace = new FilePath(null, env['WORKSPACE'])
-       }else{
-                        workspace = new FilePath(Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel(), env['WORKSPACE'])
-       }
+                if (env['NODE_NAME'].equals("master")) {
+                    workspace = new FilePath(null, env['WORKSPACE'])
+                }
+                else {
+                    workspace = new FilePath(Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel(), env['WORKSPACE'])
+                }
 
                 filename = fname == null ? param.getOriginalFileName() : fname
                 file = workspace.child(filename)
